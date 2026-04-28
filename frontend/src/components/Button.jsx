@@ -1,9 +1,16 @@
 import React from 'react';
+import {Link } from 'react-router-dom';
 
 const Button = (props) => {
-  return (
-    <button className={`btn ${props.class}`}>{props.text}</button>
-  );
+  if (props.url) {
+    return (
+      <Link to={props.url} className={`btn ${props.class}`}>
+        {props.text}
+      </Link>
+    );
+  }
+
+  
 };
 
 export default Button;
