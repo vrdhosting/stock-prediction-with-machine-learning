@@ -23,5 +23,5 @@ urlpatterns = [
     
     # Base API End Points
     path('api/v1/', include('prj01_apis.urls')),
-
+    
 ]

@@ -44,9 +44,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
+    'rest_framework_simplejwt',
     'prj01_accounts',
     'prj01_apis',
-    'corsheaders',
+    
 ]
 
 MIDDLEWARE = [
@@ -113,6 +115,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+#Rest Framework settings
+REST_FRAMEWORK = {
+    
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
