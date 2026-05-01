@@ -13,4 +13,6 @@ urlpatterns = [
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     
+    path('secured-view/', UserViews.SecuredView.as_view(), name='secured_view'),
+    
 ]

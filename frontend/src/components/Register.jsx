@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axiosInstance from '../axiosInstance';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -28,12 +28,7 @@ const Register = () => {
     //setSuccessMessage('');
 
     try{
-        const response = await axios.post('http://localhost:8000/api/v1/register/', formData, 
-            {
-            headers: {
-                'Content-Type': 'application/json',
-                     },
-            });
+        const response = await axiosInstance.post('/register/', formData);
         console.log('Registration successful:', response.data);
         setFormData({ username: '', email: '', password: '' });
         setError({});

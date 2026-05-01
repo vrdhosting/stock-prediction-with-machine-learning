@@ -1,7 +1,9 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
+import axiosInstance from '../axiosInstance';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../AuthProvider';
+import { AuthProvider, AuthContext } from '../AuthProvider';
+//import { AuthProvider } from '../AuthProvider'
 
 
 const Login = () => {
@@ -29,18 +31,15 @@ const Login = () => {
         setError('');
 
         try {
-            const response = await axios.post('http://localhost:8000/api/v1/token/', formData, 
-                {
-                headers: {
-                    'Content-Type': 'application/json',
-                         },
-                });
-            console.log('Login successful:', response.data);
+            const response = await axiosInstance.post('/token/', formData); 
+            
             localStorage.setItem('access_token', response.data.access);
             localStorage.setItem('refresh_token', response.data.refresh);
             setFormData({ username: '', password: '' });
-            navigate('/dashboard');
+            console.log('Login successful:', response.data);
             setIsLoggedIn(true);
+            navigate('/dashboard');
+            
         } catch (error) {
             console.error('Login error:', error);
             setError(error.response ? error.response.data.detail : 'Login failed. Please try again.');
