@@ -9,7 +9,11 @@ const Dashboard = () => {
     const [ticker, setTicker] = useState('')
     const [error, setError] = useState()
     const [loading, setLoading] = useState(false)
+
+    // Plots States
     const [plot, setPlot] = useState()
+    const [plot2, setPlot2] = useState()
+    const [plot3, setPlot3] = useState()
    
     useEffect(() => {
         
@@ -38,9 +42,12 @@ const Dashboard = () => {
 
             const imagePathGnome = import.meta.env.VITE_BACKEND_ROOT_URL
             const imagePathUrl = `${imagePathGnome}${response.data.plot_img}`
-            console.log(imagePathUrl)
+            const imagePathUrl2 = `${imagePathGnome}${response.data.plot_img_02}`
+            const imagePathUrl3 = `${imagePathGnome}${response.data.plot_img_03}`
+            //console.log(imagePathUrl)
             setPlot(imagePathUrl)
-
+            setPlot2(imagePathUrl2)
+            setPlot3(imagePathUrl3)
 
 
             if(response.data.error){
@@ -76,12 +83,17 @@ const Dashboard = () => {
 
                     {/* Print Prediction Plots */}
                 <div className="prediction mt-5">
-                    <div className="p-5">
+                    <div className="p-3 ">
                         {plot && (
                             <img src={plot} style = {{ maxWidth:'100%' }}/>
 
                         )}
-
+                        {plot2 && (
+                            <img src={plot2} style = {{ maxWidth:'100%' }} className='mt-3'/>
+                        )}
+                        {plot3 && (
+                            <img src={plot3} style = {{ maxWidth:'100%' }} className='mt-3'/>
+                        )}
                     </div>
 
                 </div>
